@@ -1,0 +1,22 @@
+.popup__btn-close {
+    width: 50px;
+    height: 50px;
+    background: #000000;
+    border: none;
+    padding: 0;
+    position: absolute;
+    border-radius: 50px;
+    top:-40px;
+    right: -40px;
+    z-index: 1;
+}
+
+
+
+@media screen and (max-width: 1024px) {   
+    .popup__btn-close {
+        top:-65px;
+        right: 0px;
+    }
+}
+
