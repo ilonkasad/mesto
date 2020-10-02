@@ -1,5 +1,6 @@
 let content = document.querySelector('.content');
 let editButton = content.querySelector('.profile__edit-button');
+let popup = document.querySelector('.popup');
 let closeButton = document.querySelector('.popup__btn-close');
 let popupName = document.querySelector('.popup__container__field_type_name');
 let popupProfession = document.querySelector('.popup__container__field_type_profession');
@@ -8,14 +9,12 @@ let profileSubTitle = document.querySelector('.profile__subtitle');
 let formElement = document.querySelector('.popup__container');
 
 function openEditData() {
-    let popup = document.querySelector('.popup');
     popup.classList.add('popup_opened');
     popupName.value = profileTitle.textContent;
     popupProfession.value = profileSubTitle.textContent;
 }
 
 function closeEditData() {
-    let popup = document.querySelector('.popup');
     popup.classList.remove('popup_opened');
 }
 
