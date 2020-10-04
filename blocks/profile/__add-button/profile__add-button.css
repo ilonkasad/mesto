@@ -16,7 +16,7 @@
     .profile__add-button{
         width: 282px;
         justify-self: center;
-        margin: 36px 0;
+        margin: 36px auto;
    }
 }
 

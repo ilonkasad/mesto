@@ -1,22 +1,22 @@
 .popup__btn-close {
     width: 50px;
     height: 50px;
-    background: #000000;
+    background-color: rgb(0, 0, 0, 0);;
     border: none;
     padding: 0;
-    position: absolute;
+    position: fixed;
     border-radius: 50px;
-    top:-40px;
-    right: -40px;
+    top: 0px;
+    right: 0px;
+    margin-top: 148px;
+    margin-right: 380px;
     z-index: 1;
 }
 
-
-
 @media screen and (max-width: 1024px) {   
     .popup__btn-close {
-        top:-65px;
-        right: 0px;
+        margin-top: 72px;
+        margin-right: 18px;
     }
 }
 

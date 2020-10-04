@@ -2,9 +2,8 @@
     margin: 0;
     border: none;
     width: calc(100% - 72px);
-    height: 24px;
     align-self: center;
-    font-family: Inter;
+    font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -16,7 +15,5 @@
 @media screen and (max-width: 1024px) {   
     .popup__field {
         width: calc(100% - 44px);
-        font-size: 14px;
-        line-height: 17px;
     }
 }
