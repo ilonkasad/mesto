@@ -2,7 +2,6 @@
     margin: 0;
     border: none;
     width: calc(100% - 72px);
-    min-height: 27px;
     align-self: center;
     font-family: 'Inter', 'Arial', sans-serif;
     font-style: normal;
