@@ -17,13 +17,13 @@
                 <div class="profile__profile-info">
                     <div class="profile__correction">
                         <h1 class="profile__title">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button">
+                        <button class="profile__edit-button" type="button">
                             <img src="./images/sprint-4-images/edit.svg" alt="Редактировать">
                         </button>
                     </div>
                     <h2 class="profile__subtitle">Исследователь океана</h2>
                 </div>
-                <button class="profile__add-button">
+                <button class="profile__add-button" type="button">
                     <img src="./images/sprint-4-images/add.svg" alt="Добавить">
                 </button>
             </section>
@@ -32,42 +32,42 @@
                     <img src="./images/sprint-4-images/karachaevsk.jpg" alt="Карачаевск" class="elements__image">
                     <div class="elements__group">
                         <h2 class="elements__title">Карачаевск</h2>
-                        <button class="elements__like" type="submit"></button>
+                        <button class="elements__like" type="button"></button>
                     </div>
                 </div>
                 <div class="elements__element">
                     <img src="./images/sprint-4-images/elbrus.jpg" alt="Эльбрус" class="elements__image">
                     <div class="elements__group">
                         <h2 class="elements__title">Гора Эльбрус</h2>
-                        <button class="elements__like" type="submit"></button>
+                        <button class="elements__like" type="button"></button>
                     </div>
                 </div>
                 <div class="elements__element">
                     <img src="./images/sprint-4-images/dombai.jpg" alt="Домбай" class="elements__image">
                     <div class="elements__group">
                         <h2 class="elements__title">Домбай</h2>
-                        <button class="elements__like" type="submit"></button>
+                        <button class="elements__like" type="button"></button>
                     </div>
                 </div>
                 <div class="elements__element">
                     <img src="./images/sprint-4-images/elbrus.jpg" alt="Эльбрус" class="elements__image">
                     <div class="elements__group">
                         <h2 class="elements__title">Гора Эльбрус</h2>
-                        <button class="elements__like" type="submit"></button>
+                        <button class="elements__like" type="button"></button>
                     </div>
                 </div>
                 <div class="elements__element">
                     <img src="./images/sprint-4-images/dombai.jpg" alt="Домбай" class="elements__image">
                     <div class="elements__group">
                         <h2 class="elements__title">Домбай</h2>
-                        <button class="elements__like" type="submit"></button>
+                        <button class="elements__like" type="button"></button>
                     </div>
                 </div>
                 <div class="elements__element">
                     <img src="./images/sprint-4-images/karachaevsk.jpg" alt="Карачаево-Черкессия" class="elements__image">
                     <div class="elements__group">
                         <h2 class="elements__title">Карачаево-Черкессия</h2>
-                        <button class="elements__like" type="submit"></button>
+                        <button class="elements__like" type="button"></button>
                     </div>
                 </div>         
             </section>
@@ -78,8 +78,10 @@
         <div class="popup">
              <form class="popup__container" name="popup">
                  <h2 class="popup__title">Редактировать профиль</h2>
-                 <input type="text" class="popup__field popup__field_type_name" name="name">
-                 <input type="text" class="popup__field popup__field_type_profession" name="profession">
+                 <div class="popup__inputs">
+                    <input type="text" class="popup__field popup__field_type_name" name="name">
+                    <input type="text" class="popup__field popup__field_type_profession" name="profession">
+                 </div>
                  <button class="popup__btn-save" type="submit">
                     Сохранить
                   </button>

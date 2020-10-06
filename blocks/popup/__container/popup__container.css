@@ -10,6 +10,7 @@
     border-radius: 10px;
     z-index: 2;
     opacity: 100%;
+    justify-content: space-between;
 }
 
 @media screen and (max-width: 1024px) {   

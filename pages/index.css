@@ -27,10 +27,9 @@
 
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__inputs/popup__inputs.css);
 @import url(../blocks/popup/__field/popup__field.css);
 @import url(../blocks/popup/__title/popup__title.css);
-@import url(../blocks/popup/__field/_type/popup__field_type_name.css);
-@import url(../blocks/popup/__field/_type/popup__field_type_profession.css);
 @import url(../blocks/popup/__btn-save/popup__btn-save.css);
 @import url(../blocks/popup/__btn-close/popup__btn-close.css);
 @import url(../blocks/popup/__btn-close-img/popup__btn-close-img.css);
