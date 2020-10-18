@@ -1,0 +1,5 @@
+.popup__content_view {
+    margin: auto;
+    max-width: 75vw;
+    max-height: inherit;
+}

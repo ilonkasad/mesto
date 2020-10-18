@@ -4,6 +4,7 @@
     margin: 0 auto;
     align-items: center;
     grid-template-columns: repeat(3, 282px);
+    grid-auto-rows: 354px; 
     row-gap: 18px;
     column-gap: 21px;
     padding-top: 50px;

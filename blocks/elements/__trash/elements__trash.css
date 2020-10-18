@@ -1,0 +1,15 @@
+.elements__trash {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 18px;
+    right: 15px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.elements__trash:hover {
+    opacity: 0.8;
+}

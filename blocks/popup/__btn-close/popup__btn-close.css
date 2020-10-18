@@ -4,19 +4,22 @@
     background-color: rgb(0, 0, 0, 0);;
     border: none;
     padding: 0;
-    position: fixed;
+    margin-right: -45px;
+    margin-bottom: -5px;
     border-radius: 50px;
     top: 0px;
     right: 0px;
-    margin-top: 148px;
-    margin-right: 380px;
+    align-self: flex-end;
     z-index: 1;
 }
 
 @media screen and (max-width: 1024px) {   
     .popup__btn-close {
-        margin-top: 72px;
-        margin-right: 18px;
+        width: 40px;
+        height: 40px;
+        margin: 0 0 13px 0;
     }
 }
+
+
 

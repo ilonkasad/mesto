@@ -6,6 +6,7 @@
     border: none;
     background-size: cover;
     background-position: top;
+    outline: none;
 }
 
 .elements__like:hover {
