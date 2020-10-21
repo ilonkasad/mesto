@@ -1,6 +1,10 @@
 .popup__container_type_view {
-    margin: auto;
-    border-radius: 0px;
     max-width: 75vw;
+    margin: 0 auto;
+    border-radius: 0px;
+    height: 100vh;
     background-color: transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 1s, opacity 0.5s linear;
 }

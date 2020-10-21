@@ -35,24 +35,39 @@
             <p>&copy; 2020 Mesto Russia</p>
         </footer>
         <div class="popup">
-            <div class="popup__content"> 
+            <form class="popup__container popup__container_type_edit" name="popup_edit">
                 <button class="popup__btn-close" type="button">
-                    <img class="popup__btn-close-img" src="./images/sprint-4-images/close-icon.svg" alt="Закрыть">
+                       <img class="popup__btn-close-img" src="./images/sprint-4-images/close-icon.svg" alt="Закрыть">
                 </button> 
-                <form class="popup__container popup__container_type_input" name="popup">
-                    <h2 class="popup__title"></h2>
-                    <input type="text" class="popup__field popup__field_type_name" name="name">
-                    <input type="text" class="popup__field popup__field_type_profession" name="profession">
-                    <button class="popup__btn-save" type="submit">
-                    </button>
-                </form>
-                <div class="popup__container popup__container_type_view">
-                    <img class="popup__image" alt="Выбранное изображение" src="#">
-                    <h2 class="popup__subtitle"></h2>
-                </div>
-            </div>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <input type="text" class="popup__field popup__field_type_name" name="name">
+                <input type="text" class="popup__field popup__field_type_profession" name="profession">
+                <button class="popup__btn-save" type="submit">Сохранить</button>
+            </form>      
         </div>
-    </div>
+        <div class="popup">
+            <form class="popup__container popup__container_type_add" name="popup_add">
+                <button class="popup__btn-close" type="button">
+                <img class="popup__btn-close-img" src="./images/sprint-4-images/close-icon.svg" alt="Закрыть">
+                </button> 
+                <h2 class="popup__title">Новое место</h2>
+                <input type="text" class="popup__field popup__field_type_name" placeholder="Название" name="name">
+                <input type="text" class="popup__field popup__field_type_profession" placeholder="Ссылка на картинку" name="profession">
+                <button class="popup__btn-save" type="submit">Создать</button>
+            </form>
+        </div>
+            <div class="popup">
+                <form class="popup__container popup__container_type_view" name="popup_view"> 
+                    <div class="popup_view">
+                        <button class="popup__btn-close popup__btn-close_type_view" type="button">
+                            <img class="popup__btn-close-img" src="./images/sprint-4-images/close-icon.svg" alt="Закрыть">
+                        </button>
+                        <img class="popup__image" alt="Выбранное изображение" src="#">
+                        <h2 class="popup__subtitle"></h2>
+                    </div>
+                </form>
+            </div>
+    </div> 
      <template id="element-template">
         <div class="elements__element">
             <button class= elements__trash>
@@ -66,6 +81,6 @@
             </div>
         </div>    
       </template>
-    <script src="scripts/script.js"></script>  
+    <script src="scripts/script.js"></script> 
 </body>
 </html>

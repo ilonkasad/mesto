@@ -1,0 +1,12 @@
+.popup__container_type_add {
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 1s, opacity 0.5s linear;
+}
+
+@media screen and (max-width: 1024px) {   
+    .popup__container_type_add {
+        margin-top: 123px;
+        max-width: calc(100% - 38px);
+    }
+}
