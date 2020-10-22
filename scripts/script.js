@@ -81,6 +81,13 @@ function toggleModal(modal) {
     modal.classList.toggle('popup_active');
 }
 
+function editCard(modal) {
+    toggleModal(modal);
+    popupName.value = profileTitle.textContent;
+    popupProfession.value = profileSubTitle.textContent;
+
+}
+
 function viewCard(evt) {
     toggleModal(viewModal);
     viewModal.querySelector('.popup__image').setAttribute('src', evt.target.getAttribute('src'));
@@ -97,12 +104,12 @@ function editSubmitHandler (evt) {
 function addSubmitHandler (evt) {
     evt.preventDefault(); 
     addCard(cardContainer, createCard(popupTitle.value, popupLink.value));
-    popupTitle.value='';
-    popupLink.value='';
-    addButton.click();
+    popupTitle.value=''; 
+    popupLink.value=''; 
+    closeButtonAdd.click();
 }
 
-editButton.addEventListener('click', () => toggleModal(editModal));
+editButton.addEventListener('click', () => editCard(editModal));
 addButton.addEventListener('click', () => toggleModal(addModal));
 
 editModal.addEventListener('submit', editSubmitHandler); 
