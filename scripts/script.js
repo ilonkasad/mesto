@@ -73,7 +73,7 @@ function createCard(titleValue, linkValue ) {
 }
 
 function addCard(container, cardElement) {
-    container.append(cardElement);
+    container.prepend(cardElement);
 }
 
 function toggleModal(modal) {

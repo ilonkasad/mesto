@@ -7,6 +7,7 @@
     background-size: cover;
     background-position: top;
     outline: none;
+    cursor: pointer;
 }
 
 .elements__like:hover {
