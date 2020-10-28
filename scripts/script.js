@@ -127,7 +127,6 @@ function closeByEsc(evt) {
 }
 
 function closeByPopup(evt, modal) {
-    console.log(evt.target);
     if((evt.target=== modal.closest(".popup"))||(evt.target=== modal.closest(".popup__container_type_view"))){
         toggleModal(findActiveModal());
     }
