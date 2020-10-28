@@ -1,11 +1,15 @@
 const content = document.querySelector('.content');
 const editButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
+const popupOverlayEdit = document.querySelector('.popup_overlay-edit');
+const popupOverlayAdd = document.querySelector('.popup_overlay-add');
+const popupOverlayView = document.querySelector('.popup_overlay-view');
 const popupContent = document.querySelector('.popup__content');
 
 const editModal = document.querySelector('.popup__container_type_edit');
 const addModal = document.querySelector('.popup__container_type_add');
 const viewModal = document.querySelector('.popup__container_type_view');
+const imgModal = document.querySelector('.popup_view');
 
 const popupName = editModal.querySelector('.popup__field_type_name');
 const popupProfession = editModal.querySelector('.popup__field_type_profession');
@@ -78,13 +82,19 @@ function addCard(container, cardElement) {
 
 function toggleModal(modal) {
     modal.closest('div').classList.toggle('popup_opened');
-    modal.classList.toggle('popup_active');
+    modal.classList.toggle('popup_active');  
 }
 
-function editCard(modal) {
+function editCardOpen(modal) {
     toggleModal(modal);
     popupName.value = profileTitle.textContent;
     popupProfession.value = profileSubTitle.textContent;
+    enableValidation(objEdit);
+    
+}
+function addCardOpen(modal) {
+    toggleModal(modal);
+    enableValidation(objAdd);
 
 }
 
@@ -109,8 +119,26 @@ function addSubmitHandler (evt) {
     closeButtonAdd.click();
 }
 
-editButton.addEventListener('click', () => editCard(editModal));
-addButton.addEventListener('click', () => toggleModal(addModal));
+function closeByEsc(evt) {
+    const {key} = evt; 
+    if (key === "Escape") {
+        toggleModal(findActiveModal());
+    }
+}
+
+function closeByPopup(evt, modal) {
+    console.log(evt.target);
+    if((evt.target=== modal.closest(".popup"))||(evt.target=== modal.closest(".popup__container_type_view"))){
+        toggleModal(findActiveModal());
+    }
+}
+
+function findActiveModal() {
+    return document.querySelector('.popup_active');
+}
+
+editButton.addEventListener('click', () => editCardOpen(editModal));
+addButton.addEventListener('click', () => addCardOpen(addModal));
 
 editModal.addEventListener('submit', editSubmitHandler); 
 addModal.addEventListener('submit', addSubmitHandler);
@@ -119,5 +147,9 @@ closeButtonEdit.addEventListener('click', () => toggleModal(editModal));
 closeButtonAdd.addEventListener('click', () => toggleModal(addModal));
 closeButtonView.addEventListener('click', () => toggleModal(viewModal));
 
+popupOverlayEdit.addEventListener('mousedown', evt => closeByPopup(evt, editModal));
+popupOverlayAdd.addEventListener('mousedown', evt => closeByPopup(evt, addModal));
+popupOverlayView.addEventListener('mousedown', evt => closeByPopup(evt, imgModal));
 
+document.addEventListener('keydown', evt => closeByEsc(evt));
 

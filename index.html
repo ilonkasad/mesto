@@ -34,29 +34,33 @@
         <footer class="footer">
             <p>&copy; 2020 Mesto Russia</p>
         </footer>
-        <div class="popup">
+        <div class="popup popup_overlay-edit">
             <form class="popup__container popup__container_type_edit" name="popup_edit">
                 <button class="popup__btn-close" type="button">
                        <img class="popup__btn-close-img" src="./images/sprint-4-images/close-icon.svg" alt="Закрыть">
                 </button> 
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <input type="text" class="popup__field popup__field_type_name" placeholder="Имя" name="name">
-                <input type="text" class="popup__field popup__field_type_profession" placeholder="Профессия" name="profession">
+                <input type="text" class="popup__field popup__field_type_name" placeholder="Имя" name="name" required minlength="2" maxlength="40">
+                <span class="popup__error" id="name-error"></span>
+                <input type="text" class="popup__field popup__field_type_profession" placeholder="Профессия" name="profession" required minlength="2" maxlength="200">
+                <span class="popup__error popup__error_active" id="profession-error"></span>
                 <button class="popup__btn-save" type="submit">Сохранить</button>
             </form>      
         </div>
-        <div class="popup">
+        <div class="popup popup_overlay-add">
             <form class="popup__container popup__container_type_add" name="popup_add">
                 <button class="popup__btn-close" type="button">
                 <img class="popup__btn-close-img" src="./images/sprint-4-images/close-icon.svg" alt="Закрыть">
                 </button> 
                 <h2 class="popup__title">Новое место</h2>
-                <input type="text" class="popup__field popup__field_type_name" placeholder="Название" name="name">
-                <input type="text" class="popup__field popup__field_type_profession" placeholder="Ссылка на картинку" name="profession">
+                <input type="text" class="popup__field popup__field_type_name" placeholder="Название" name="name-card" required minlength="2" maxlength="30">
+                <span class="popup__error" id="name-card-error"></span>
+                <input type="url" class="popup__field popup__field_type_profession" placeholder="Ссылка на картинку" name="link-card" required>
+                <span class="popup__error popup__error_active" id="link-card-error"></span>
                 <button class="popup__btn-save" type="submit">Создать</button>
             </form>
         </div>
-            <div class="popup">
+            <div class="popup popup_overlay-view">
                 <form class="popup__container popup__container_type_view" name="popup_view"> 
                     <div class="popup_view">
                         <button class="popup__btn-close popup__btn-close_type_view" type="button">
@@ -81,6 +85,7 @@
             </div>
         </div>    
       </template>
+    <script src="scripts/validate.js"></script> 
     <script src="scripts/script.js"></script> 
 </body>
 </html>
