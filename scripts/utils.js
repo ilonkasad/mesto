@@ -54,7 +54,6 @@ export function viewCard(evt) {
   }
   
  export function closeByPopup(evt,modal) {
-    console.log(evt);
     if (evt.target.classList.contains('popup')) {
       toggleModal(modal);
     }
