@@ -19,6 +19,7 @@ export class Card {
           const imgElement = this._element
             .querySelector('.elements__image');
           imgElement.setAttribute("src", this._linkValue);
+          imgElement.setAttribute("alt", this._titleValue);
           return imgElement;
       }
 
@@ -32,7 +33,7 @@ export class Card {
       this._element
         .querySelector(".elements__trash")
         .addEventListener("click", function (evt) {
-          evt.target.closest("div").classList.add("elements__element_deleted");
+          evt.target.closest(".elements__element").remove()
         });
     };
 
@@ -40,9 +41,7 @@ export class Card {
         this._element = this._getTemplate();
         this._imgElement = this._createImageElement();
         this._setEventListeners();
-       
         this._element.querySelector(".elements__title").textContent = this._titleValue;
-    
         return this._element;
       }
 }

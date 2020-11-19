@@ -5,20 +5,26 @@ import { FormValidator } from './FormValidator.js';
 import { editCardOpen, addCardOpen, editSubmitHandler, addSubmitHandler, toggleModal, closeByPopup} from './utils.js';
 
 import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, editModal, addModal, viewModal, imgModal, closeButtonEdit,
-        closeButtonAdd, closeButtonView, addButton, cardContainer, objEdit, objAdd, initialCards} from './constants.js';
+        closeButtonAdd, closeButtonView, addButton, cardContainer, validatorParams, initialCards} from './constants.js';
 
   function loadCards() {
       initialCards.forEach((item) => {
          addCard(item.name, item.link);
     });
   }
+ 
   export function addCard(name, link) {
+    const card =  createCard(name, link)
+    cardContainer.prepend(card);
+  }
+  
+  function createCard(name, link) {
     const card = new Card (name, link, "#element-template");
-    cardContainer.prepend(card.generateCard());
+    return card.generateCard()
   }
 
-export const editValidator = new FormValidator(objEdit, editModal);
-export const addValidator = new FormValidator(objAdd, addModal);
+export const editValidator = new FormValidator(validatorParams, editModal);
+export const addValidator = new FormValidator(validatorParams, addModal);
 
 editValidator.enableValidation();
 addValidator.enableValidation();
@@ -42,5 +48,5 @@ popupOverlayAdd.addEventListener("mousedown", (evt) =>
   closeByPopup(evt, addModal)
 );
 popupOverlayView.addEventListener("mousedown", (evt) =>
-  closeByPopup(evt, imgModal)
+  closeByPopup(evt, viewModal)
 );

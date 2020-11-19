@@ -1,7 +1,7 @@
 import { editValidator, addValidator, addCard } from './index.js';
 
 import {viewModal, popupImage, popupSubtitle, popupName, popupProfession, popupTitle, popupLink, closeButtonEdit, 
-        closeButtonAdd, profileTitle, profileSubTitle, objEdit, objAdd} from './constants.js';
+        closeButtonAdd, profileTitle, profileSubTitle} from './constants.js';
 
 export function viewCard(evt) {
     toggleModal(viewModal);
@@ -10,13 +10,13 @@ export function viewCard(evt) {
   }
 
  export function toggleModal(modal) {
-    modal.closest("div").classList.toggle("popup_opened");
-    modal.classList.toggle("popup_active");
+  modal.closest("div").classList.toggle("popup_active");
+  modal.classList.toggle("popup_active");  
     if (modal.classList.contains("popup_active")) {
-        document.addEventListener("keydown", (evt) => closeByEsc(evt));
+        document.addEventListener("keydown", closeByEsc);
     }
     else {
-        document.removeEventListener("keydown", (evt) => closeByEsc(evt));
+        document.removeEventListener("keydown", closeByEsc);
     }
   }
 
@@ -24,11 +24,11 @@ export function viewCard(evt) {
     toggleModal(modal);
     popupName.value = profileTitle.textContent;
     popupProfession.value = profileSubTitle.textContent;
-    editValidator.enableValidation(objEdit);
+    editValidator._clearError();
   }
  export function addCardOpen(modal) {
     toggleModal(modal);
-    addValidator.enableValidation(objAdd);
+    addValidator._clearError();
   }
 
  export function editSubmitHandler(evt) {
@@ -53,17 +53,15 @@ export function viewCard(evt) {
     }
   }
   
- export function closeByPopup(evt, modal) {
-    if (
-      evt.target === modal.closest(".popup") ||
-      evt.target === modal.closest(".popup__container_type_view")
-    ) {
-      toggleModal(findActiveModal());
+ export function closeByPopup(evt,modal) {
+    console.log(evt);
+    if (evt.target.classList.contains('popup')) {
+      toggleModal(modal);
     }
   }
   
   function findActiveModal() {
-    return document.querySelector(".popup_active");
+    return document.querySelector(".popup_active .popup__container");
   }
   
 

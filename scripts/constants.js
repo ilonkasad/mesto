@@ -29,7 +29,7 @@ export const cardTemplate = document.querySelector("#element-template");
 export const profileTitle = document.querySelector(".profile__title");
 export const profileSubTitle = document.querySelector(".profile__subtitle");
 
-export const objEdit = {
+export const validatorParams  = {
   inputSelector: ".popup__field",
   submitButtonSelector: ".popup__btn-save",
   inactiveButtonClass: "popup__btn-save_disabled",
@@ -37,13 +37,6 @@ export const objEdit = {
   errorClass: "popup__error_active",
 };
 
-export const objAdd = {
-  inputSelector: ".popup__field",
-  submitButtonSelector: ".popup__btn-save",
-  inactiveButtonClass: "popup__btn-save_disabled",
-  inputErrorClass: "popup__field_type-error",
-  errorClass: "popup__error_active",
-};
 export const initialCards = [
   {
     name: "Архыз",
