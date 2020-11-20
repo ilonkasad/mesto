@@ -4,7 +4,7 @@ import { FormValidator } from './FormValidator.js';
 
 import { editCardOpen, addCardOpen, editSubmitHandler, addSubmitHandler, toggleModal, closeByPopup} from './utils.js';
 
-import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, editModal, addModal, viewModal, imgModal, closeButtonEdit,
+import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, editModal, addModal, closeButtonEdit,
         closeButtonAdd, closeButtonView, addButton, cardContainer, validatorParams, initialCards} from './constants.js';
 
   function loadCards() {
@@ -31,22 +31,21 @@ addValidator.enableValidation();
   
 loadCards();
 
-editButton.addEventListener("click", () => editCardOpen(editModal));
-addButton.addEventListener("click", () => addCardOpen(addModal));
+editButton.addEventListener("click", () => editCardOpen(popupOverlayEdit));
+addButton.addEventListener("click", () => addCardOpen(popupOverlayAdd));
 
 editModal.addEventListener("submit", editSubmitHandler);
 addModal.addEventListener("submit", addSubmitHandler);
 
-closeButtonEdit.addEventListener("click", () => toggleModal(editModal));
-closeButtonAdd.addEventListener("click", () => toggleModal(addModal));
-closeButtonView.addEventListener("click", () => toggleModal(viewModal));
-
-popupOverlayEdit.addEventListener("mousedown", (evt) =>
-  closeByPopup(evt, editModal)
+popupOverlayEdit.addEventListener("click", (evt) =>
+  closeByPopup(evt, popupOverlayEdit)
 );
-popupOverlayAdd.addEventListener("mousedown", (evt) =>
-  closeByPopup(evt, addModal)
+popupOverlayAdd.addEventListener("click", (evt) =>
+  closeByPopup(evt, popupOverlayAdd)
 );
-popupOverlayView.addEventListener("mousedown", (evt) =>
-  closeByPopup(evt, viewModal)
+popupOverlayView.addEventListener("click", (evt) =>
+  closeByPopup(evt, popupOverlayView)
 );
+closeButtonEdit.addEventListener("click", () => toggleModal(popupOverlayEdit));
+closeButtonAdd.addEventListener("click", () => toggleModal(popupOverlayAdd));
+closeButtonView.addEventListener("click", () => toggleModal(popupOverlayView));

@@ -1,14 +1,10 @@
 .popup__container_type_edit {
-    opacity: 0;
-    visibility: hidden;
-    transition: visibility 1s, opacity 0.5s linear;
-    text-align: center;
-    padding-top: -10px;
-    
+  text-align: center;
+  padding-top: -10px;
 }
-@media screen and (max-width: 1024px) {   
-    .popup__container_type_edit { 
-        margin-top: 123px;
-        max-width: calc(100% - 38px);
-    }
+@media screen and (max-width: 1024px) {
+  .popup__container_type_edit {
+    margin-top: 123px;
+    max-width: calc(100% - 38px);
+  }
 }

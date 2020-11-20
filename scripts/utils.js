@@ -1,16 +1,15 @@
 import { editValidator, addValidator, addCard } from './index.js';
 
-import {viewModal, popupImage, popupSubtitle, popupName, popupProfession, popupTitle, popupLink, closeButtonEdit, 
+import {popupOverlayView, popupImage, popupSubtitle, popupName, popupProfession, popupTitle, popupLink, closeButtonEdit, 
         closeButtonAdd, profileTitle, profileSubTitle} from './constants.js';
 
 export function viewCard(evt) {
-    toggleModal(viewModal);
+    toggleModal(popupOverlayView);
     popupImage.setAttribute("src", evt.target.getAttribute("src"));
     popupSubtitle.textContent = evt.target.parentElement.querySelector(".elements__title").textContent;
   }
 
  export function toggleModal(modal) {
-  modal.closest("div").classList.toggle("popup_active");
   modal.classList.toggle("popup_active");  
     if (modal.classList.contains("popup_active")) {
         document.addEventListener("keydown", closeByEsc);
@@ -24,11 +23,11 @@ export function viewCard(evt) {
     toggleModal(modal);
     popupName.value = profileTitle.textContent;
     popupProfession.value = profileSubTitle.textContent;
-    editValidator._clearError();
+    editValidator.clearError();
   }
  export function addCardOpen(modal) {
     toggleModal(modal);
-    addValidator._clearError();
+    addValidator.clearError();
   }
 
  export function editSubmitHandler(evt) {
@@ -60,7 +59,7 @@ export function viewCard(evt) {
   }
   
   function findActiveModal() {
-    return document.querySelector(".popup_active .popup__container");
+    return document.querySelector(".popup_active");
   }
   
 

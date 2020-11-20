@@ -3,7 +3,4 @@
   margin: 0 auto;
   border-radius: 0px;
   background-color: transparent;
-  opacity: 0;
-  visibility: hidden;
-  transition: visibility 1s, opacity 0.2s linear;
 }
