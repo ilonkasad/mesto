@@ -1,10 +1,9 @@
-import { viewCard } from './utils.js';
-
-export class Card {
-    constructor(titleValue, linkValue, templateSelector){
+export default class Card {
+    constructor(titleValue, linkValue, templateSelector, handleCardClick){
         this._titleValue = titleValue;
         this._linkValue = linkValue;
         this._template = templateSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -15,7 +14,7 @@ export class Card {
 
         return cardElement;
       }
-    _createImageElement() {
+    createImageElement() {
           const imgElement = this._element
             .querySelector('.elements__image');
           imgElement.setAttribute("src", this._linkValue);
@@ -24,7 +23,6 @@ export class Card {
       }
 
      _setEventListeners() {
-      this._imgElement.addEventListener("click", viewCard);
       this._element
         .querySelector(".elements__like")
         .addEventListener("click", function (evt) {
@@ -39,7 +37,7 @@ export class Card {
 
       generateCard() {
         this._element = this._getTemplate();
-        this._imgElement = this._createImageElement();
+        this._handleCardClick();
         this._setEventListeners();
         this._element.querySelector(".elements__title").textContent = this._titleValue;
         return this._element;
