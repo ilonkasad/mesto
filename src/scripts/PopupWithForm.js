@@ -1,25 +1,23 @@
 
 import  Popup  from './Popup.js';
-import  {popupTitle, popupLink} from './constants.js';
 
 export default class PopupWithForm extends Popup{
-    constructor(popupSelector, callbackSubmit) {
+    constructor(popupSelector, callbackSubmit, popupTitleSelector, popupLinkSelector) {
         super(popupSelector);
         this._callSubmit = callbackSubmit;
+        this._popupTitle = popupTitleSelector;
+        this._popupLink = popupLinkSelector;
     }
 
     setEventListeners(closeButton) {
         super.setEventListeners(closeButton);
-        this._popup.addEventListener("submit", this._callSubmit);
+        this._popup.addEventListener("submit", this._callSubmit); //по комментарию ревью совсем не поняла как исправлять. Распишите пожалуйста подробнее что не так. Спасибо.
     }
 
-    toggle() {
-        super.toggle();
-        if (this._popup.classList.contains("popup_active")===false){
-            popupTitle.value = "";
-            popupLink.value = "";
-        } 
-      
+    close() {
+        super.close();
+        this._popup.querySelector(this._popupTitle).value ='';
+        this._popup.querySelector(this._popupLink).value = '';
     }
 
 }

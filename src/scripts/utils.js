@@ -3,13 +3,13 @@ import  Section  from './Section.js';
 import {popupTitle, popupLink, closeButtonEdit, closeButtonAdd} from './constants.js';
 
  export function editCardOpen(modal) {
-   modal.toggle();
+   modal.open();
    inputValues.getUserInfo();
    editValidator.clearError();
   }
 
  export function addCardOpen(modal) {
-    modal.toggle();
+    modal.open();
     addValidator.clearError();
   }
 
@@ -23,7 +23,7 @@ import {popupTitle, popupLink, closeButtonEdit, closeButtonAdd} from './constant
     evt.preventDefault();
     const cardAdded = new Section({
       renderer: () => {
-        cardAdded._addItem(createCard(popupTitle.value, popupLink.value));
+        cardAdded.addItem(createCard(popupTitle.value, popupLink.value));
       }
     }, ".elements");
     cardAdded.renderItem();
@@ -32,7 +32,7 @@ import {popupTitle, popupLink, closeButtonEdit, closeButtonAdd} from './constant
   
  export function closeByPopup(evt,modal) {
     if (evt.target.classList.contains('popup')) {
-       modal.classList.toggle("popup_active"); 
+       modal.classList.remove("popup_active"); 
     }
   }
   

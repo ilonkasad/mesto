@@ -1,24 +1,28 @@
+import  { keyEscape } from './constants.js';
 export default class Popup {
     constructor(popupSelector){
         this._popup = document.querySelector(popupSelector);
     }
 
-    toggle() {
-        this._popup.classList.toggle("popup_active"); 
-        if ( this._popup.classList.contains("popup_active")) {
-            document.addEventListener("keydown", this._handleEscClose.bind(this),{once: true});
-        }
+    open() {
+        this._popup.classList.add("popup_active"); 
+        document.addEventListener("keydown", this._handleEscClose.bind(this));
+    }
+
+    close() {
+        this._popup.classList.remove("popup_active"); 
+        document.removeEventListener("keydown", this._handleEscClose.bind(this));
     }
 
     _handleEscClose(evt){
         const { key } = evt;
-        if (key === "Escape") {
-            this.toggle(); 
+        if (key === keyEscape) {
+            this.close(); 
          }
     }
 
     setEventListeners(closeButton){
-        closeButton.addEventListener("click", () => this.toggle());
+        closeButton.addEventListener("click",  this.close.bind(this));
     }
 
 }

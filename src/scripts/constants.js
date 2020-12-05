@@ -13,8 +13,6 @@ export const imgModal = document.querySelector(".popup_view");
 export const popupImage = viewModal.querySelector(".popup__image");
 export const popupSubtitle = viewModal.querySelector(".popup__subtitle");
 
-export const popupName = editModal.querySelector(".popup__field_type_name");
-export const popupProfession = editModal.querySelector(".popup__field_type_profession");
 export const popupTitle = addModal.querySelector(".popup__field_type_name");
 export const popupLink = addModal.querySelector(".popup__field_type_profession");
 
@@ -28,6 +26,8 @@ export const cardTemplate = document.querySelector("#element-template");
 
 export const profileTitle = document.querySelector(".profile__title");
 export const profileSubTitle = document.querySelector(".profile__subtitle");
+
+export const keyEscape = "Escape";
 
 export const validatorParams  = {
   inputSelector: ".popup__field",
