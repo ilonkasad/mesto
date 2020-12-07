@@ -8,9 +8,9 @@ export default class PopupWithImage extends Popup {
         this.closeButton = this._popup.querySelector(closeButtonSelector);
     }
 
-    open(card){
+    open(imgSrc, imgDescription){
         super.open();
-        this.image.setAttribute("src", card.getAttribute("src"));
-        this.subtitle.textContent = card.parentElement.querySelector(".elements__title").textContent;
+        this.image.setAttribute("src", imgSrc);
+        this.subtitle.textContent = imgDescription;
     }
 }

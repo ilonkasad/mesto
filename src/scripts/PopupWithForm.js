@@ -11,7 +11,7 @@ export default class PopupWithForm extends Popup{
 
     setEventListeners(closeButton) {
         super.setEventListeners(closeButton);
-        this._popup.addEventListener("submit", this._callSubmit); //по комментарию ревью совсем не поняла как исправлять. Распишите пожалуйста подробнее что не так. Спасибо.
+        this._popup.addEventListener("submit", this._callSubmit);
     }
 
     close() {

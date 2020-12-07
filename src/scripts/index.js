@@ -3,7 +3,7 @@ import  FormValidator  from './FormValidator.js';
 import  Section  from './Section.js';
 import { editCardOpen, addCardOpen, editSubmitHandler, addSubmitHandler, closeByPopup} from './utils.js';
 import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, editModal, addModal, closeButtonEdit, closeButtonView,
-        closeButtonAdd, addButton, validatorParams, initialCards} from './constants.js';
+        closeButtonAdd, addButton, validatorParams, initialCards, popupTitle, popupLink} from './constants.js';
 import  PopupWithForm  from './PopupWithForm.js';
 import  PopupWithImage  from './PopupWithImage.js';
 import  UserInfo  from './UserInfo.js';
@@ -24,23 +24,23 @@ popupView.setEventListeners(closeButtonView);
 
 export  function createCard(name, link) {
     const card = new Card (name, link, "#element-template", ()=>{
-      card.createImageElement().addEventListener("click", (evt) => popupView.open(evt.target))});
+      card.createImageElement().addEventListener("click", (evt) => popupView.open(evt.target.getAttribute("src"), evt.target.parentElement.querySelector(".elements__title").textContent))});
     return card.generateCard()
   }
 
   loadCards();
 
 // about Edit Form----------------------------------------------------------------
-const popupEdit = new PopupWithForm(".popup_overlay-edit", editSubmitHandler, ".popup__field_type_name", ".popup__field_type_profession");
+const popupEdit = new PopupWithForm(".popup_overlay-edit", (evt) =>{ evt.preventDefault(); editSubmitHandler()}, ".popup__field_type_name", ".popup__field_type_profession");
 popupEdit.setEventListeners(closeButtonEdit);
-export const inputValues = new UserInfo(".popup__container_type_edit",".profile__title", ".profile__subtitle",".popup__field_type_name",".popup__field_type_profession");
+export const inputValues = new UserInfo(".profile__title", ".profile__subtitle",".popup__field_type_profile-title",".popup__field_type_profile-subtitle");
 export const editValidator = new FormValidator(validatorParams, editModal);
 editValidator.enableValidation();
 editButton.addEventListener("click", () => editCardOpen(popupEdit));
 
 
 // about Add Form-----------------------------------------------------------------
-const popupAdd = new PopupWithForm(".popup_overlay-add", addSubmitHandler, ".popup__field_type_name", ".popup__field_type_profession");
+const popupAdd = new PopupWithForm(".popup_overlay-add", (evt) =>{ evt.preventDefault(); addSubmitHandler(popupTitle.value, popupLink.value)}, ".popup__field_type_name", ".popup__field_type_profession");
 popupAdd.setEventListeners(closeButtonAdd);
 export const addValidator = new FormValidator(validatorParams, addModal);
 addValidator.enableValidation();

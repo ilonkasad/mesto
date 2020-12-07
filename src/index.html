@@ -40,9 +40,9 @@
             <img class="popup__btn-close-img" src="<%=require('./images/sprint-4-images/close-icon.svg')%>" alt="Закрыть"/>
           </button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" class="popup__field popup__field_type_name" placeholder="Имя" name="name" required minlength="2" maxlength="40"/>
+          <input type="text" class="popup__field popup__field_type_name popup__field_type_profile-title" placeholder="Имя" name="name" required minlength="2" maxlength="40"/>
           <span class="popup__error" id="name-error"></span>
-          <input type="text" class="popup__field popup__field_type_profession" placeholder="Профессия" name="profession" required minlength="2" maxlength="200"/>
+          <input type="text" class="popup__field popup__field_type_profession popup__field_type_profile-subtitle" placeholder="Профессия" name="profession" required minlength="2" maxlength="200"/>
           <span class="popup__error popup__error_active" id="profession-error"></span>
           <button class="popup__btn-save" type="submit">Сохранить</button>
         </form>

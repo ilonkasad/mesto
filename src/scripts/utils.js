@@ -1,6 +1,6 @@
 import { editValidator, addValidator, createCard, inputValues } from './index.js';
 import  Section  from './Section.js';
-import {popupTitle, popupLink, closeButtonEdit, closeButtonAdd} from './constants.js';
+import {closeButtonEdit, closeButtonAdd} from './constants.js';
 
  export function editCardOpen(modal) {
    modal.open();
@@ -13,17 +13,15 @@ import {popupTitle, popupLink, closeButtonEdit, closeButtonAdd} from './constant
     addValidator.clearError();
   }
 
- export function editSubmitHandler(evt) {
-    evt.preventDefault();
+ export function editSubmitHandler() {
     inputValues.setUserInfo();
     closeButtonEdit.click();
   }
   
- export function addSubmitHandler(evt) {
-    evt.preventDefault();
+ export function addSubmitHandler(cardTitle, cardLink) {
     const cardAdded = new Section({
       renderer: () => {
-        cardAdded.addItem(createCard(popupTitle.value, popupLink.value));
+        cardAdded.addItem(createCard(cardTitle, cardLink));
       }
     }, ".elements");
     cardAdded.renderItem();

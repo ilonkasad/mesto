@@ -1,7 +1,6 @@
 
 export default  class UserInfo {
-    constructor(popupSelector, profileTitleSelector, profileSubTitleSelector, popupNameSelector, popupProfessionSelector) {
-        this._popup = document.querySelector(popupSelector);
+    constructor(profileTitleSelector, profileSubTitleSelector, popupNameSelector, popupProfessionSelector) {
         this._name = document.querySelector(profileTitleSelector).textContent;
         this._info = document.querySelector(profileSubTitleSelector).textContent;
         this._popupName = popupNameSelector;
@@ -11,13 +10,13 @@ export default  class UserInfo {
     }
 
     getUserInfo() {
-        this._popup.querySelector(this._popupName).value = this._name;
-        this._popup.querySelector(this._popupProfession).value = this._info;
+        document.querySelector(this._popupName).value = this._name;
+        document.querySelector(this._popupProfession).value = this._info;
     }
 
     setUserInfo() {
-        this._name = this._popup.querySelector(this._popupName).value;
-        this._info = this._popup.querySelector(this._popupProfession).value;
+        this._name = document.querySelector(this._popupName).value;
+        this._info = document.querySelector(this._popupProfession).value;
         document.querySelector(this._profileTitle).textContent = this._name;
         document.querySelector(this._profileSubTitle).textContent =  this._info;
        
