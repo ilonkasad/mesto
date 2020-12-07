@@ -1,10 +1,12 @@
 import { editValidator, addValidator, createCard, inputValues } from './index.js';
 import  Section  from './Section.js';
-import {closeButtonEdit, closeButtonAdd} from './constants.js';
+import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './constants.js';
 
  export function editCardOpen(modal) {
    modal.open();
    inputValues.getUserInfo();
+   popupName.value = inputValues._profileTitle;
+   popupProfession.value = inputValues._profileSubTitle;
    editValidator.clearError();
   }
 
@@ -13,15 +15,15 @@ import {closeButtonEdit, closeButtonAdd} from './constants.js';
     addValidator.clearError();
   }
 
- export function editSubmitHandler() {
-    inputValues.setUserInfo();
+ export function editSubmitHandler({name, profession}) {
+    inputValues.setUserInfo(name, profession);
     closeButtonEdit.click();
   }
   
- export function addSubmitHandler(cardTitle, cardLink) {
+ export function addSubmitHandler({nameCard, linkCard}) {
     const cardAdded = new Section({
       renderer: () => {
-        cardAdded.addItem(createCard(cardTitle, cardLink));
+        cardAdded.addItem(createCard(nameCard, linkCard));
       }
     }, ".elements");
     cardAdded.renderItem();

@@ -1,24 +1,19 @@
-
+import { profileTitle, profileSubTitle } from './constants.js'; 
 export default  class UserInfo {
-    constructor(profileTitleSelector, profileSubTitleSelector, popupNameSelector, popupProfessionSelector) {
-        this._name = document.querySelector(profileTitleSelector).textContent;
-        this._info = document.querySelector(profileSubTitleSelector).textContent;
-        this._popupName = popupNameSelector;
-        this._popupProfession = popupProfessionSelector;
-        this._profileTitle = profileTitleSelector;
-        this._profileSubTitle = profileSubTitleSelector
+    constructor(popupName, popupProfession) {
+        this._profileTitle = document.querySelector(popupName).textContent;
+        this._profileSubTitle = document.querySelector(popupProfession).textContent;
     }
 
     getUserInfo() {
-        document.querySelector(this._popupName).value = this._name;
-        document.querySelector(this._popupProfession).value = this._info;
+        this._profileTitle = profileTitle.textContent;
+        this._profileSubTitle = profileSubTitle.textContent;
     }
 
-    setUserInfo() {
-        this._name = document.querySelector(this._popupName).value;
-        this._info = document.querySelector(this._popupProfession).value;
-        document.querySelector(this._profileTitle).textContent = this._name;
-        document.querySelector(this._profileSubTitle).textContent =  this._info;
-       
+    setUserInfo(name, profession) {
+        this._profileTitle = name;
+        this._profileSubTitle = profession;
+        profileTitle.textContent = this._profileTitle;
+        profileSubTitle.textContent = this._profileSubTitle;  
     }
 }
