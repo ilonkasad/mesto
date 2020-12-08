@@ -3,7 +3,7 @@ import  FormValidator  from './FormValidator.js';
 import  Section  from './Section.js';
 import { editCardOpen, addCardOpen, editSubmitHandler, addSubmitHandler, closeByPopup} from './utils.js';
 import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, editModal, addModal, closeButtonEdit, closeButtonView,
-        closeButtonAdd, addButton, validatorParams, initialCards, profileTitle, profileSubTitle} from './constants.js';
+        closeButtonAdd, addButton, validatorParams, initialCards} from './constants.js';
 import  PopupWithForm  from './PopupWithForm.js';
 import  PopupWithImage  from './PopupWithImage.js';
 import  UserInfo  from './UserInfo.js';
