@@ -5,8 +5,8 @@ import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './c
  export function editCardOpen(modal) {
    modal.open();
    inputValues.getUserInfo();
-   popupName.value = inputValues._profileTitle;
-   popupProfession.value = inputValues._profileSubTitle;
+   popupName.value = inputValues._name;
+   popupProfession.value = inputValues._profession;
    editValidator.clearError();
   }
 
