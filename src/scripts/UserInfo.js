@@ -4,7 +4,11 @@
         this._professionSelector = professionSelector;
     }
 
-    getUserInfo() {
+    getUserInfo(data) {
+         return {
+              name: data.name,
+              about: data.about 
+         }
          this._name = document.querySelector(this._nameSelector).textContent;
          this._profession = document.querySelector(this._professionSelector).textContent;
     }

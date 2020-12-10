@@ -1,0 +1,12 @@
+.popup__container_type_submit {
+  max-width: calc(31% + 50px);
+  margin: 0 auto;
+  border-radius: 0px;
+  background-color: transparent;
+}
+@media screen and (max-width: 1024px) {
+  .popup__container_type_submit {
+    margin-top: 123px;
+    max-width: calc(100% - 38px);
+  }
+}

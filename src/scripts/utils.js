@@ -1,12 +1,12 @@
-import { editValidator, addValidator, createCard, inputValues } from './index.js';
+import { editValidator, addValidator, createCard, inputValues, dataInfo, api } from './index.js';
 import  Section  from './Section.js';
 import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './constants.js';
 
  export function editCardOpen(modal) {
    modal.open();
-   inputValues.getUserInfo();
-   popupName.value = inputValues._name;
-   popupProfession.value = inputValues._profession;
+   const info = inputValues.getUserInfo(dataInfo);
+   popupName.value = info.name;
+   popupProfession.value = info.about;
    editValidator.clearError();
   }
 
@@ -15,8 +15,14 @@ import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './c
     addValidator.clearError();
   }
 
- export function editSubmitHandler({name, profession}) {
-    inputValues.setUserInfo(name, profession);
+ export function editSubmitHandler({usrName, usrProfession}) {
+    inputValues.setUserInfo(usrName, usrProfession);
+    api.updateUserInfo(
+      {
+        name: usrName,
+        about: usrProfession
+      }
+    );
     closeButtonEdit.click();
   }
   
@@ -27,6 +33,12 @@ import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './c
       }
     }, ".elements");
     cardAdded.renderItem();
+    api.addNewCard(
+      {
+        name: nameCard,
+        link: linkCard
+      }
+    );
     closeButtonAdd.click();
   }
   
