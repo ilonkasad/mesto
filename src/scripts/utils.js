@@ -1,6 +1,6 @@
 import { editValidator, addValidator, createCard, inputValues, dataInfo, api } from './index.js';
 import  Section  from './Section.js';
-import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './constants.js';
+import { closeButtonEdit, closeButtonAdd, closeButtonAvatar, popupName, popupProfession, defaultLike, avatarSelector } from './constants.js';
 
  export function editCardOpen(modal) {
    modal.open();
@@ -27,19 +27,32 @@ import { closeButtonEdit, closeButtonAdd, popupName, popupProfession } from './c
   }
   
  export function addSubmitHandler({nameCard, linkCard}) {
-    const cardAdded = new Section({
-      renderer: () => {
-        cardAdded.addItem(createCard(nameCard, linkCard));
-      }
-    }, ".elements");
-    cardAdded.renderItem();
     api.addNewCard(
       {
         name: nameCard,
-        link: linkCard
+        link: linkCard,
+        likes: defaultLike
+      }
+    )
+    .then(data => {
+      const cardAdded = new Section({
+        renderer: () => {
+          cardAdded.addItem(createCard(nameCard, linkCard, defaultLike, data._id, data.owner._id));
+        }
+      }, ".elements");
+      cardAdded.renderItem();
+    });
+    closeButtonAdd.click();
+  }
+
+  export function avatarSubmitHandler({linkAvatar}) {
+    inputValues.setAvatar(avatarSelector,linkAvatar);
+    api.updateAvatar(
+      {
+        avatar: linkAvatar
       }
     );
-    closeButtonAdd.click();
+    closeButtonAvatar.click();
   }
   
  export function closeByPopup(evt,modal) {

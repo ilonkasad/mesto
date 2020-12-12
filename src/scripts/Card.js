@@ -1,10 +1,16 @@
+import { defaultOwnerId } from './constants.js';
 export default class Card {
-    constructor(titleValue, linkValue, likesValue, templateSelector, handleCardClick){
-        this._titleValue = titleValue;
-        this._linkValue = linkValue;
-        this._likesValue = likesValue;
-        this._template = templateSelector;
+    constructor({data,handleCardClick,handleDeleteClick,handleLikeClick},templateSelector)
+    {
+        this._titleValue = data.name;
+        this._linkValue = data.link;
+        this._likesValue = data.likes;
+        this._id = data.id;
+        this._ownerId = data.ownerId;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteClick = handleDeleteClick;
+        this._handleLikeClick = handleLikeClick;
+        this._template = templateSelector;
     }
 
     _getTemplate() {
@@ -20,34 +26,62 @@ export default class Card {
             .querySelector('.elements__image');
             crdElement.setAttribute("src", this._linkValue);
             crdElement.setAttribute("alt", this._titleValue);
-            this._putLikeCounts();
+            this.likeCountIcon = this._element.querySelector('.elements__like-count'); 
+            this.likeIcon = this._element.querySelector(".elements__like");
+            this.putLikeCounts(this._likesValue.length);
+            this.putLikeColor();
           return crdElement;
       }
-    
-      _putLikeCounts() {
-        const likeCount = this._element
-          .querySelector('.elements__like-count');
-        likeCount.textContent = this._likesValue.length;
-      }
-
+  
      _setEventListeners() {
       this._element
         .querySelector(".elements__like")
-        .addEventListener("click", function (evt) {
-          evt.target.classList.toggle("elements__like_active");
+        .addEventListener("click", (evt) => {
+          //evt.target.classList.toggle("elements__like_active");
+
+          this._handleLikeClick(evt);
         });
-      this._element
+      this.createCardElement()
+        .addEventListener("click", (evt) => this._handleCardClick(evt));  
+      
+      if (this._ownerId === defaultOwnerId) {
+        this._element
         .querySelector(".elements__trash")
-        .addEventListener("click", function (evt) {
-          evt.target.closest(".elements__element").remove()
+        .addEventListener("click", (evt) => {
+          this.partForRemove = evt.target.closest(".elements__element");
+          this._handleDeleteClick(evt);
         });
+      }  
+      else {
+        this._element
+        .querySelector(".elements__trash").classList.add("elements__trash_hide");
+      } 
     };
 
       generateCard() {
         this._element = this._getTemplate();
-        this._handleCardClick();
         this._setEventListeners();
         this._element.querySelector(".elements__title").textContent = this._titleValue;
         return this._element;
       }
+
+      //--about likes
+      putLikeCounts(count) {
+          this.likeCountIcon.textContent = count;
+      }
+      putLikeColor(){
+        if (this.checkCardHasMyLike()) {
+          this.likeIcon.classList.add("elements__like_active")
+        }
+        else{
+          this.likeIcon.classList.remove("elements__like_active")
+        } 
+      }
+
+      checkCardHasMyLike() {
+        const even = (element) => element._id === defaultOwnerId;
+        return this._likesValue.some(even);
+      }
+      
+
 }
