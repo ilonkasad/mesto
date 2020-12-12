@@ -41,7 +41,8 @@ import { closeButtonEdit, closeButtonAdd, closeButtonAvatar, popupName, popupPro
         }
       }, ".elements");
       cardAdded.renderItem();
-    });
+    })
+    .finally(api.dataIsLoading(false, api._btnNewCard, api._btnCreateTxt));
     closeButtonAdd.click();
   }
 
