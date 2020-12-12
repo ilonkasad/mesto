@@ -37,8 +37,6 @@ export default class Card {
       this._element
         .querySelector(".elements__like")
         .addEventListener("click", (evt) => {
-          //evt.target.classList.toggle("elements__like_active");
-
           this._handleLikeClick(evt);
         });
       this.createCardElement()
