@@ -3,7 +3,7 @@ import  Card  from './Card.js';
 import  FormValidator  from './FormValidator.js';
 import  Section  from './Section.js';
 import { editCardOpen, addCardOpen, editSubmitHandler, addSubmitHandler, avatarSubmitHandler, closeByPopup} from './utils.js';
-import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, popupOverlaySubmit, popupOverlayAvatar, editModal, addModal, avatarModal,
+import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, popupOverlaySubmit, popupOverlayAvatar, editModal, addModal, avatarModal, avatarSelector,
         closeButtonEdit, closeButtonView, closeButtonSubmit, closeButtonAvatar, closeButtonAdd, addButton, avatarButton, validatorParams, submitButtonSelector} from './constants.js';
 import  PopupWithForm  from './PopupWithForm.js';
 import  PopupWithImage  from './PopupWithImage.js';
@@ -39,6 +39,7 @@ api.getAllNeededData().then(data => {
   const [dataUserInfo, dataCards] = data;
   dataInfo = dataUserInfo;
   inputValues.setUserInfo(dataUserInfo.name, dataUserInfo.about);
+  inputValues.setAvatar(avatarSelector,dataUserInfo.avatar);
   loadCards(dataCards);
 })
 
