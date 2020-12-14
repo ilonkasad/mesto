@@ -4,7 +4,7 @@ import  FormValidator  from './FormValidator.js';
 import  Section  from './Section.js';
 import { editCardOpen, addCardOpen, editSubmitHandler, addSubmitHandler, avatarSubmitHandler, closeByPopup} from './utils.js';
 import {editButton, popupOverlayEdit, popupOverlayAdd, popupOverlayView, popupOverlaySubmit, popupOverlayAvatar, editModal, addModal, avatarModal, avatarSelector,
-        closeButtonEdit, closeButtonView, closeButtonSubmit, closeButtonAvatar, closeButtonAdd, addButton, avatarButton, validatorParams, submitButtonSelector} from './constants.js';
+        closeButtonEdit, closeButtonView, closeButtonSubmit, closeButtonAvatar, closeButtonAdd, addButton, avatarButton, validatorParams} from './constants.js';
 import  PopupWithForm  from './PopupWithForm.js';
 import  PopupWithImage  from './PopupWithImage.js';
 import  PopupWithSubmit  from './PopupWithSubmit.js';
@@ -18,20 +18,10 @@ popupView.setEventListeners(closeButtonView);
 
 export const api = new Api(
   {
-  infoUrl: 'https://mesto.nomoreparties.co/v1/cohort-18/users/me',
-  cardsUrl: 'https://mesto.nomoreparties.co/v1/cohort-18/cards',
-  avaUrl: 'https://mesto.nomoreparties.co/v1/cohort-18/users/me/avatar',
-  headers: {
+    url: 'https://mesto.nomoreparties.co/v1/cohort-18/',
+    headers: {
     'authorization' : 'c65ebf99-c03c-4506-8c9d-5c6429dc291f',
     'Content-Type': 'application/json'}
-  },
-  {
-    btnUserInfo: editModal.querySelector(submitButtonSelector),
-    btnNewCard: addModal.querySelector(submitButtonSelector),
-    btnUpdAva: avatarModal.querySelector(submitButtonSelector),
-    btnLoadingTxt: "Сохранение...",
-    btnSaveTxt: "Сохранить",
-    btnCreateTxt: "Создать"
   }
 ); 
 
@@ -60,20 +50,27 @@ export  function createCard(name, link, likes, id, ownerId) {
       data: {name, link, likes, id, ownerId}, 
       handleCardClick: (evt) => popupView.open(evt.target.getAttribute("src"), evt.target.parentElement.querySelector(".elements__title").textContent),
       handleDeleteClick: ()=> { popupSubmit.setSubmitAction(()=>api.removeCard(id)
-                                                                    .then(res => card.partForRemove.remove())
+                                                                    .then( res=> { if (!res.ok) {
+                                                                        return Promise.reject(`Ошибка: ${res.status}`)} 
+                                                                        card.partForRemove.remove();
+                                                                        popupSubmit.close();
+                                                                        })
                                                                     .catch(err => console.error(err)));
-                                 popupSubmit.setEventListeners(closeButtonSubmit); 
                                  popupSubmit.open(); 
                                 },
       handleLikeClick: ()=> { if (card.checkCardHasMyLike()){
                                 api.dislikeCard(id)
-                                .then(res=>card._likesValue = res.likes)
-                                .then(card.putLikeCounts(card._likesValue.length-1));
+                                .then(res=> {
+                                  card.putLikeCounts(res.likes.length);
+                                  card.putLikeColor();
+                                });
                               }
                               else {
                                 api.likeCard(id)
-                                .then(res=>card._likesValue = res.likes)
-                                .then(card.putLikeCounts(card._likesValue.length+1));
+                                .then(res=> {
+                                  card.putLikeCounts(res.likes.length);
+                                  card.putLikeColor();
+                                });
                               }                               
                            }
     },
@@ -81,9 +78,9 @@ export  function createCard(name, link, likes, id, ownerId) {
   );
   return card.generateCard()
 }
-
+popupSubmit.setEventListeners(closeButtonSubmit); 
 // about Edit Form----------------------------------------------------------------
-const popupEdit = new PopupWithForm(".popup_overlay-edit",  editSubmitHandler, ".popup__field_type_name", ".popup__field_type_profession");
+export const popupEdit = new PopupWithForm(".popup_overlay-edit",  editSubmitHandler, ".popup__field_type_name", ".popup__field_type_profession");
 popupEdit.setEventListeners(closeButtonEdit);
 export const editValidator = new FormValidator(validatorParams, editModal);
 editValidator.enableValidation();
@@ -91,7 +88,7 @@ editButton.addEventListener("click", () => editCardOpen(popupEdit));
 
 
 // about Add Form-----------------------------------------------------------------
-const popupAdd = new PopupWithForm(".popup_overlay-add", addSubmitHandler, ".popup__field_type_name", ".popup__field_type_profession");
+export const popupAdd = new PopupWithForm(".popup_overlay-add", addSubmitHandler, ".popup__field_type_name", ".popup__field_type_profession");
 popupAdd.setEventListeners(closeButtonAdd);
 export const addValidator = new FormValidator(validatorParams, addModal);
 addValidator.enableValidation();
@@ -99,7 +96,7 @@ addButton.addEventListener("click", () => addCardOpen(popupAdd));
 
 
 // about Avatar Form---------------------------------------------------------------
-const popupAvatar = new PopupWithForm(".popup_overlay-avatar", avatarSubmitHandler, ".popup__field_type_avatar");
+export const popupAvatar = new PopupWithForm(".popup_overlay-avatar", avatarSubmitHandler, ".popup__field_type_avatar");
 popupAvatar.setEventListeners(closeButtonAvatar);
 export const avatarValidator = new FormValidator(validatorParams, avatarModal);
 avatarValidator.enableValidation();

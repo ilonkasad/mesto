@@ -1,143 +1,90 @@
 export default class Api {
-    constructor(options, btnOptions) {
-      this._infoUrl = options.infoUrl;
-      this._cardsUrl = options.cardsUrl;
-      this._avaUrl = options.avaUrl;
+    constructor(options) {
+      this._url = options.url;
       this._headers = options.headers;
-      this._btnUserInfo = btnOptions.btnUserInfo;
-      this._btnNewCard = btnOptions.btnNewCard;
-      this._btnUpdAva = btnOptions.btnUpdAva;
-      this._btnLoadingTxt = btnOptions.btnLoadingTxt;
-      this._btnSaveTxt = btnOptions.btnSaveTxt;
-      this._btnCreateTxt = btnOptions.btnCreateTxt;
     }
 
     getUserInfo() {
-        return fetch(this._infoUrl, {
+        return fetch(`${this._url}users/me`, {
             method: 'GET',
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
+        .then(res => this._getResponseData(res))
     }
   
     getInitialCards() {
-        return fetch(this._cardsUrl, {
+        return fetch(`${this._url}cards`, {
             method: 'GET',
             headers: this._headers
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         })
+        .then(res => this._getResponseData(res))
     }
 
     updateUserInfo(usrInfo) {
-        this.dataIsLoading(true, this._btnUserInfo, this._btnSaveTxt);
-        return fetch(this._infoUrl, {
+        return fetch(`${this._url}users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify(
                 usrInfo
               )
         })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-          })
-        .finally(()=> {this.dataIsLoading(false,this._btnUserInfo, this._btnSaveTxt);}
-        );     
+        .then(res => this._getResponseData(res))
     }
 
     addNewCard(cardInfo) {
-        this.dataIsLoading(true, this._btnNewCard, this._btnCreateTxt);
-        return fetch(this._cardsUrl, {
+        return fetch(`${this._url}cards`, {
             method: 'POST',
             headers: this._headers,
             body: JSON.stringify(
                 cardInfo
               )
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-           // return Promise.reject(`Ошибка: ${res.status}`);
-         });      
+        .then(res => this._getResponseData(res))   
     }
 
     removeCard(id) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-18/cards/${id}`, {
+        return fetch(`${this._url}cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         });   
     }
 
     likeCard(id) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-18/cards/likes/${id}`, {
+        return fetch(`${this._url}cards/likes/${id}`, {
             method: 'PUT',
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         });   
+        .then(res => this._getResponseData(res))
     }
 
     dislikeCard(id) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-18/cards/likes/${id}`, {
+        return fetch(`${this._url}cards/likes/${id}`, {
             method: 'DELETE',
             headers: this._headers,
         })
-        .then(res => {
-            if (res.ok) {
-                return res.json()
-            }
-            return Promise.reject(`Ошибка: ${res.status}`);
-         });   
+        .then(res => this._getResponseData(res))
     }
 
     updateAvatar(avaLink) {
-        this.dataIsLoading(true, this._btnUpdAva, this._btnSaveTxt);
-        return fetch(this._avaUrl, {
+        return fetch(`${this._url}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify(
                 avaLink
               )
         })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-          })
-        .finally(()=> {this.dataIsLoading(false, this._btnUpdAva, this._btnSaveTxt);}
-        );         
     }
 
     getAllNeededData() {
         return Promise.all([this.getUserInfo(), this.getInitialCards()]);
     }
   
-    dataIsLoading(isLoading, button, textDefault) {
-        if (isLoading) {
-            button.textContent = this._btnLoadingTxt;
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`); 
         }
-        else {
-            button.textContent = textDefault;;
-        }
-      }
+        return res.json();
+     }
   }
   
   

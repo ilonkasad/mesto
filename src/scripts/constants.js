@@ -45,6 +45,13 @@ export const defaultLike = [];
 export const defaultOwnerId = "18b1810a6104adf44905dc4f";
 export const defaultId = '777';
 
+export const btnUserInfo = editModal.querySelector(submitButtonSelector);
+export const btnNewCard = addModal.querySelector(submitButtonSelector);
+export const btnUpdAva = avatarModal.querySelector(submitButtonSelector);
+export const btnLoadingTxt = "Сохранение...";
+export const btnSaveTxt = "Сохранить";
+export const btnCreateTxt = "Создать";
+
 export const validatorParams  = {
   inputSelector: ".popup__field",
   submitButtonSelector: ".popup__btn-save",

@@ -1,6 +1,7 @@
-import { editValidator, addValidator, createCard, inputValues, dataInfo, api } from './index.js';
+import { editValidator, addValidator, createCard, inputValues, dataInfo, api, popupEdit, popupAdd, popupAvatar } from './index.js';
 import  Section  from './Section.js';
-import { closeButtonEdit, closeButtonAdd, closeButtonAvatar, popupName, popupProfession, defaultLike, avatarSelector } from './constants.js';
+import { popupName, popupProfession, defaultLike, avatarSelector, btnUserInfo, 
+         btnNewCard, btnUpdAva, btnLoadingTxt, btnSaveTxt, btnCreateTxt } from './constants.js';
 
  export function editCardOpen(modal) {
    modal.open();
@@ -16,18 +17,26 @@ import { closeButtonEdit, closeButtonAdd, closeButtonAvatar, popupName, popupPro
   }
 
  export function editSubmitHandler({usrName, usrProfession}) {
-    inputValues.setUserInfo(usrName, usrProfession);
+    dataIsLoading(true, btnUserInfo, btnSaveTxt);
     api.updateUserInfo(
       {
         name: usrName,
         about: usrProfession
       }
-    );
-    closeButtonEdit.click();
+    )
+    .then(() => { 
+      inputValues.setUserInfo(usrName, usrProfession);
+      popupEdit.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })   
+    .finally(dataIsLoading(false,btnUserInfo, btnSaveTxt));
   }
   
  export function addSubmitHandler({nameCard, linkCard}) {
-    api.addNewCard(
+  dataIsLoading(true, btnNewCard, btnCreateTxt);  
+  api.addNewCard(
       {
         name: nameCard,
         link: linkCard,
@@ -41,24 +50,42 @@ import { closeButtonEdit, closeButtonAdd, closeButtonAvatar, popupName, popupPro
         }
       }, ".elements");
       cardAdded.renderItem();
+      popupAdd.close();
     })
-    .finally(api.dataIsLoading(false, api._btnNewCard, api._btnCreateTxt));
-    closeButtonAdd.click();
+    .catch((err) => {
+      console.log(err);
+    }) 
+    .finally(dataIsLoading(false, btnNewCard, btnCreateTxt));
   }
 
   export function avatarSubmitHandler({linkAvatar}) {
-    inputValues.setAvatar(avatarSelector,linkAvatar);
+    dataIsLoading(true, btnUpdAva, btnSaveTxt);
     api.updateAvatar(
       {
         avatar: linkAvatar
       }
-    );
-    closeButtonAvatar.click();
+    )
+    .catch((err) => {
+      console.log(err);
+    })
+    .then(()=>{
+      inputValues.setAvatar(avatarSelector,linkAvatar);
+      popupAvatar.close();
+    })
+    .finally(dataIsLoading(false, btnUpdAva, btnSaveTxt));         
   }
   
  export function closeByPopup(evt,modal) {
     if (evt.target.classList.contains('popup')) {
        modal.classList.remove("popup_active"); 
+    }
+  }
+  function dataIsLoading(isLoading, button, textDefault) {
+    if (isLoading) {
+        button.textContent = btnLoadingTxt;
+    }
+    else {
+        button.textContent = textDefault;
     }
   }
   
