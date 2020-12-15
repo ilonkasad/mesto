@@ -1,6 +1,7 @@
 # Проект 7: Место
 
 [Ссылка на github](https://ilonkasad.github.io/mesto/)
+
 [Посмотреть на сайте](https://ilonkasad.github.io/mesto)
 
 ### Обзор
