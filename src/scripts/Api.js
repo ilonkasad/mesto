@@ -47,6 +47,7 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers,
         })
+        .then(res => this._getResponseData(res))
     }
 
     likeCard(id) {

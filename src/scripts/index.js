@@ -32,6 +32,9 @@ api.getAllNeededData().then(data => {
   inputValues.setAvatar(avatarSelector,dataUserInfo.avatar);
   loadCards(dataCards);
 })
+.catch((err) => {
+  console.log(err);
+})
 
 // load Cards----------------------------------------------------------------------
 function loadCards(dataCards) {
@@ -50,8 +53,7 @@ export  function createCard(name, link, likes, id, ownerId) {
       data: {name, link, likes, id, ownerId}, 
       handleCardClick: (evt) => popupView.open(evt.target.getAttribute("src"), evt.target.parentElement.querySelector(".elements__title").textContent),
       handleDeleteClick: ()=> { popupSubmit.setSubmitAction(()=>api.removeCard(id)
-                                                                    .then( res=> { if (!res.ok) {
-                                                                        return Promise.reject(`Ошибка: ${res.status}`)} 
+                                                                    .then( ()=> { 
                                                                         card.partForRemove.remove();
                                                                         popupSubmit.close();
                                                                         })

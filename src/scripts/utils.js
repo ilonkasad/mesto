@@ -31,7 +31,7 @@ import { popupName, popupProfession, defaultLike, avatarSelector, btnUserInfo,
     .catch((err) => {
       console.log(err);
     })   
-    .finally(dataIsLoading(false,btnUserInfo, btnSaveTxt));
+    .finally(()=> dataIsLoading(false,btnUserInfo, btnSaveTxt));
   }
   
  export function addSubmitHandler({nameCard, linkCard}) {
@@ -55,7 +55,7 @@ import { popupName, popupProfession, defaultLike, avatarSelector, btnUserInfo,
     .catch((err) => {
       console.log(err);
     }) 
-    .finally(dataIsLoading(false, btnNewCard, btnCreateTxt));
+    .finally(()=> dataIsLoading(false, btnNewCard, btnCreateTxt));
   }
 
   export function avatarSubmitHandler({linkAvatar}) {
@@ -65,14 +65,14 @@ import { popupName, popupProfession, defaultLike, avatarSelector, btnUserInfo,
         avatar: linkAvatar
       }
     )
-    .catch((err) => {
-      console.log(err);
-    })
     .then(()=>{
       inputValues.setAvatar(avatarSelector,linkAvatar);
       popupAvatar.close();
     })
-    .finally(dataIsLoading(false, btnUpdAva, btnSaveTxt));         
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(()=> dataIsLoading(false, btnUpdAva, btnSaveTxt));         
   }
   
  export function closeByPopup(evt,modal) {
