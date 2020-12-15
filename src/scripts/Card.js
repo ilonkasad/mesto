@@ -29,7 +29,13 @@ export default class Card {
             this.likeCountIcon = this._element.querySelector('.elements__like-count'); 
             this.likeIcon = this._element.querySelector(".elements__like");
             this.putLikeCounts(this._likesValue.length);
-            this.putLikeColor();
+            if (this.checkCardHasMyLike()){
+              this.putLikeColor(true);
+            }
+            else {
+              this.putLikeColor(false);
+            }
+            
           return crdElement;
       }
   
@@ -67,8 +73,8 @@ export default class Card {
       putLikeCounts(count) {
           this.likeCountIcon.textContent = count;
       }
-      putLikeColor(){
-        if (this.checkCardHasMyLike()) {
+      putLikeColor(isColor){
+        if (isColor) {
           this.likeIcon.classList.add("elements__like_active")
         }
         else{

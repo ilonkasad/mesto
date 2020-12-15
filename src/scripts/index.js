@@ -62,14 +62,14 @@ export  function createCard(name, link, likes, id, ownerId) {
                                 api.dislikeCard(id)
                                 .then(res=> {
                                   card.putLikeCounts(res.likes.length);
-                                  card.putLikeColor();
+                                  card.putLikeColor(false);
                                 });
                               }
                               else {
                                 api.likeCard(id)
                                 .then(res=> {
                                   card.putLikeCounts(res.likes.length);
-                                  card.putLikeColor();
+                                  card.putLikeColor(true);
                                 });
                               }                               
                            }
